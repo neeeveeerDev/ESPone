@@ -1,6 +1,5 @@
 <p align="center">
-  <img src="assets/logo-dark.png#gh-dark-mode-only" width="400" height="200" alt="ESPone">
-  <img src="assets/logo-light.png#gh-light-mode-only" width="400" height="200" alt="ESPone">
+  <img src="assets/logo.png" width="400" height="200" alt="ESPone">
 </p>
 
 <h1 align="center">ESPone</h1>
