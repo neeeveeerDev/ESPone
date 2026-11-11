@@ -2,8 +2,6 @@
   <img src="assets/logo.png" width="400" height="200" alt="ESPone">
 </p>
 
-<h1 align="center">ESPone</h1>
-
 <p align="center">
   Универсальная прошивка-комбайн: весь радио-эфир и всё железо устройства — в одном интерфейсе.
 </p>
