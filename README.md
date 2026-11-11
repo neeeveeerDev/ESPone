@@ -1,9 +1,6 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/logo-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/logo-light.png">
-    <img src="./assets/logo-light.png" width="400" height="200" alt="ESPone">
-  </picture>
+  <img src="assets/logo-dark.png#gh-dark-mode-only" width="400" height="200" alt="ESPone">
+  <img src="assets/logo-light.png#gh-light-mode-only" width="400" height="200" alt="ESPone">
 </p>
 
 <h1 align="center">ESPone</h1>
