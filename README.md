@@ -37,3 +37,6 @@
 | **CC1101 (SPI)** | CS: `7`, MOSI: `11`, SCK: `12`, MISO: `13`, GDO0: `14`, GDO2: `16` |
 | **Battery** | ADC: `18`, CHRG: `21` |
 
+<p align="center">
+  <img src="assets/pinout.png" width="600" height="650" alt="ESPONE">
+</p>
