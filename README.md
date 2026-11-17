@@ -40,3 +40,5 @@
 <p align="center">
   <img src="assets/pinout.png" width="600" height="650" alt="ESPONE">
 </p>
+
+TIKTOK: www.tiktok.com/@neveresptech
