@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/device.jpg" width="600" height="400" alt="ESPONE">
+  <img src="assets/device.jpg" width="600" height="650" alt="ESPONE">
 </p>
 
 # Распиновка модулей
