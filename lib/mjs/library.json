@@ -1,0 +1,7 @@
+{
+  "name": "mjs",
+  "version": "1.26.0",
+  "description": "Embedded JavaScript engine for C/C++ by Cesanta",
+  "frameworks": "arduino",
+  "platforms": "espressif32"
+}
