@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package espone;
+
+option java_package = "com.espone.remote.proto";
+option java_outer_classname = "EspOneProto";
+
+// Коды аппаратных и виртуальных кнопок управления
+enum KeyCode {
+  KEY_NONE = 0;
+  KEY_UP = 1;
+  KEY_DOWN = 2;
+  KEY_LEFT = 3;
+  KEY_RIGHT = 4;
+  KEY_OK = 5;
+  KEY_BACK = 6;
+}
+
+// Запрос авторизации / сопряжения с телефоном
+message AuthRequest {
+  string pin = 1;         // 6-значный PIN-код сопряжения
+  string client_name = 2; // Имя телефона / клиента
+}
+
+// Ответ на авторизацию
+message AuthResponse {
+  bool success = 1;       // true, если PIN верный
+  string message = 2;     // Сообщение статуса ("OK", "INVALID_PIN")
+  string device_name = 3; // Имя ESPone устройства
+  uint64 hwid = 4;        // Аппаратный ID (eFuse MAC)
+}
+
+// Команда управления (телефон -> ESPone)
+message ControlCommand {
+  KeyCode key = 1;        // Нажатая клавиша
+  bool repeat = 2;        // Автоповтор при удержании
+}
+
+// Фрагмент кадра экрана 128x64 (ESPone -> телефон)
+// Экран SSD1306 128x64 = 1024 байта (1 бит на пиксель)
+message ScreenChunk {
+  uint32 frame_id = 1;     // Номер кадра
+  uint32 chunk_index = 2;  // Индекс фрагмента (0..N-1)
+  uint32 total_chunks = 3; // Всего фрагментов в кадре (напр. 4 по 256 байт)
+  uint32 offset = 4;       // Байт смещения в буфере
+  bytes data = 5;          // Байты фрагмента буфера u8g2
+}
+
+// Полный кадр экрана (если MTU/канал позволяет передать целиком)
+message ScreenFrame {
+  uint32 width = 1;        // 128
+  uint32 height = 2;       // 64
+  uint32 frame_id = 3;
+  bytes buffer = 4;        // 1024 байта 1-bpp (монохромный буфер u8g2)
+}
+
+// Статус устройства
+message DeviceStatus {
+  bool is_paired = 1;
+  uint32 uptime_ms = 2;
+  int32 battery_pct = 3;   // -1 если нет батареи
+  string active_app = 4;
+}
+
+// Общий BLE-конверт для структурированных сообщений
+message BleMessage {
+  enum Type {
+    MSG_UNKNOWN = 0;
+    MSG_AUTH_REQ = 1;
+    MSG_AUTH_RESP = 2;
+    MSG_CONTROL = 3;
+    MSG_SCREEN_CHUNK = 4;
+    MSG_SCREEN_FRAME = 5;
+    MSG_STATUS = 6;
+  }
+  Type type = 1;
+  oneof payload {
+    AuthRequest auth_req = 2;
+    AuthResponse auth_resp = 3;
+    ControlCommand control = 4;
+    ScreenChunk screen_chunk = 5;
+    ScreenFrame screen_frame = 6;
+    DeviceStatus status = 7;
+  }
+}
